@@ -23,6 +23,16 @@ public class CreatingThreads {
     * Em multithread não é possível saber quem terminará primeiro uma execução, por isso, cuidados são necessários.
     *
     *
+    * A segunda forma de utilização de Threads é por meio de uma classe que implemente a interface Runnable (mais usual do que a primeira forma)
+    * A interface Runnable também pertence ao java.lang e também possui um método run, e nele colocamos o código que será executado.
+    * Para instanciar deve criar um new Thread e passar como parâmetro um Runnable para depois usar o start, diferente da herança que permitia criar um objeto diretamente.
+    *
+    * A grande vantagem do Runnable é que por ter apenas um método ele é uma Functional Interface e pode ser substituído por uma Expressão Lambda.
+    * Ou seja, ao invés de criar uma classe que implemente Runnable podemos descarta-la. Antes do Java 8 se utilizava classes anônimas do tipo Runnable.
+    * Com lambda apenas uma linha de código pode ser utilizada, por isso, é o preferido dos desenvolvedores.
+    * Outro motivo é que por herança não é permitido herdar de mais de uma classe, ou seja, se a classe herdar de Thread já estará com o limite atingido de herança
+    * Já a interface te dá uma flexbilidade maior e quanto a performance, uso de memório, etc, é a mesma coisa.
+    *
     *
     *
     * */
