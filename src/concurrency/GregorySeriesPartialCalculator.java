@@ -3,8 +3,8 @@ package concurrency;
 import static concurrency.GregorySeriesCalculator.NUM_ITERATIONS;
 import static concurrency.GregorySeriesCalculator.NUM_THREADS;
 
-@SuppressWarnings("ALL")
-public class GregorySeriesPartialCalculator implements Runnable { // implementando a parte da thread
+
+public class GregorySeriesPartialCalculator extends Thread { // mudou para Thread para facilitar start
 
     private final int id; // id da thread que vai de 0 até o que for determinado para quantidade de threads
     private final double[] partials;
