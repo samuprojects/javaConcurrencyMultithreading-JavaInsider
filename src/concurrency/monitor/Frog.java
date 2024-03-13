@@ -1,6 +1,5 @@
 package concurrency.monitor;
 
-@SuppressWarnings("ALL")
 public class Frog extends Thread{
 
     private static final int MAX_JUMP = 50;
@@ -11,6 +10,10 @@ public class Frog extends Thread{
     private int currentDistance;
 
     private int lastJump;
+
+    private static final Object MONITOR = new Object(); // também estático para que todas as threads vejam apenas esse monitor (só um lock disponível)
+
+    private static int position; // para que os sapos enxerguem a mesma variável e computar quem chegou primeiro // região crítica // Race condition
 
 
     public Frog(String name, int totalDistance) {
@@ -25,6 +28,8 @@ public class Frog extends Thread{
             report();
             rest();
         }
+
+        crossFinishLine();
     }
 
     private void jump(){
@@ -38,7 +43,7 @@ public class Frog extends Thread{
     }
 
     private void report() {
-        System.out.format("%s jumped %d cm. Total distance is %d cm\n", name, lastJump, totalDistance);
+        System.out.format("%s jumped %d cm. Total distance is %d cm\n", name, lastJump, currentDistance);
 
     }
 
@@ -52,5 +57,10 @@ public class Frog extends Thread{
         }
     }
 
-
+    private void crossFinishLine(){
+        synchronized (MONITOR){ // mesmo que alguns sapos cheguem juntos somente 1 vai receber o lock e informar sua posição, por isso a impressão também foi sincronizada
+            position++; // o primeiro que chegar vai incrementar para 1, e sucessivamente.
+            System.out.format("%s finished the race in position %d\n", name, position);
+        }
+    }
 }
