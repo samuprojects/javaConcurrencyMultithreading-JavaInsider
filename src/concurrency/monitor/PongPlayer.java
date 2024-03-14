@@ -10,9 +10,8 @@ public class PongPlayer implements Runnable {
     @Override
     public void run() {
         for (int i = 0; i < 10 ; i++) {
-            game.playPong();
-
             try {
+                game.playPong();
                 Thread.sleep(500);
             } catch (InterruptedException e) {
                 throw new RuntimeException(e);
