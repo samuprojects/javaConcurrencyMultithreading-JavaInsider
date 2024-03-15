@@ -21,6 +21,12 @@ public class Producer extends Thread {
         int counter = 0;
         while (true) {
             produce(counter++);
+
+            try { // colocado sleep fora do synchronized porque ele trava o lock e não permite outras threads rodarem
+                Thread.sleep(300);
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
         }
     }
 
@@ -36,6 +42,7 @@ public class Producer extends Thread {
             }
 
             queue.offer(value); // produção na fila
+            System.out.format("%s produced: %d\n", name, value); // impressão do valor produzido
             queue.notifyAll(); // após produção avisa todos os possíveis consumidores que estão dormindo para consumir
         }
     }
