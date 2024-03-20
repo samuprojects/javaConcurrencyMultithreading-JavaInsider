@@ -7,7 +7,7 @@ import java.util.concurrent.TimeUnit;
 @SuppressWarnings("ALL")
 public class AppExecutorShutdown {
 
-    public static void main(String[] args) throws InterruptedException {
+    public static void main(String[] args) {
 
         ExecutorService e = Executors.newSingleThreadExecutor();
 
@@ -21,12 +21,20 @@ public class AppExecutorShutdown {
             System.out.println("Task ended");
         });
 
-        e.shutdown();
+        //e.shutdown();
         //List<Runnable> pendingTasks = e.shutdownNow();
+        //System.out.println("Shutdown initiated...");
+        //boolean timeout = e.awaitTermination(5, TimeUnit.SECONDS);
+        //System.out.println("The end: " + timeout);
 
-        System.out.println("Shutdown initiated...");
-
-        e.awaitTermination(5, TimeUnit.SECONDS);
+        e.shutdown();
+        try {
+            if (!e.awaitTermination(1, TimeUnit.SECONDS)) {
+                e.shutdownNow();
+            }
+        } catch (InterruptedException exception) {
+            e.shutdownNow();
+        }
 
         System.out.println("The end!");
     }
