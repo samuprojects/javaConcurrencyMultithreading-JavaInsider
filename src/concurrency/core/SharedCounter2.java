@@ -1,4 +1,4 @@
-package concurrency;
+package concurrency.core;
 
 @SuppressWarnings("ALL")
 public class SharedCounter2 implements Runnable {

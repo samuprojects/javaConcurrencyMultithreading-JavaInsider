@@ -1,4 +1,4 @@
-package concurrency;
+package concurrency.core;
 
 public class Counter implements Runnable { // aplicação multithreading: contador
 

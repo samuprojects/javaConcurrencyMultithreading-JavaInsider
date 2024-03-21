@@ -1,4 +1,4 @@
-package concurrency;
+package concurrency.core;
 
 /*
 * Para bloquear a thread principal até que outras threads finalizem pode usar o join() para isso

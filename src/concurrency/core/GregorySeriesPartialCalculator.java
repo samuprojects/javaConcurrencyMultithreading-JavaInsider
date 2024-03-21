@@ -1,7 +1,7 @@
-package concurrency;
+package concurrency.core;
 
-import static concurrency.GregorySeriesCalculator.NUM_ITERATIONS;
-import static concurrency.GregorySeriesCalculator.NUM_THREADS;
+import static concurrency.core.GregorySeriesCalculator.NUM_ITERATIONS;
+import static concurrency.core.GregorySeriesCalculator.NUM_THREADS;
 
 
 public class GregorySeriesPartialCalculator extends Thread { // mudou para Thread para facilitar start

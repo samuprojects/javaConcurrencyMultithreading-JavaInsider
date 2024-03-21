@@ -1,4 +1,4 @@
-package concurrency;
+package concurrency.core;
 
 import java.util.stream.DoubleStream;
 
